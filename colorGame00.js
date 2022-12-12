@@ -1,11 +1,11 @@
 const Board = () => {
-  const [player, setPlayer] = React.useState(0);
+  const [player, setPlayer] = React.useState(1);
   let status = `Player ${player}`;
   return (
     <div
       className="game-board"
       onClick={(e) => {
-        setPlayer(player + 1);
+        setPlayer((player + 1) % 2)
         status = `Player ${player}`;
       }}
     >
