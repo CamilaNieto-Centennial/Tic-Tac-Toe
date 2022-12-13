@@ -1,9 +1,13 @@
 const Square = ({id, player}) => {
-  console.log(`Square ${id} re-rendering now.`);
 
   const [color, setColor] = React.useState('darkRed');
   const palet = ["darkRed", "darkGreen", "purple"];
   const getRandomColor = () => palet[Math.floor(Math.random() * 3)];
+
+  React.useEffect(() => {
+    console.log(`Render ${id}`);
+    return () => console.log(`Unmounting Square ${id}`);
+  })
   
   return (
   <button onClick={e => {
