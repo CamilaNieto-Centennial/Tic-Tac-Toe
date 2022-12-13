@@ -1,7 +1,10 @@
 const Square = ({id, player}) => {
+  console.log(`Square ${id} re-rendering now.`);
+
   const [color, setColor] = React.useState('darkRed');
   const palet = ["darkRed", "darkGreen", "purple"];
   const getRandomColor = () => palet[Math.floor(Math.random() * 3)];
+  
   return (
   <button onClick={e => {
     setColor(getRandomColor());
@@ -14,9 +17,17 @@ const Square = ({id, player}) => {
 
 const Board = () => {
   const [player, setPlayer] = React.useState(1);
+  console.log('Board re-rendering now.');
+
   const [mounted, setMounted] = React.useState(true);
+  const [random, setRandom] = React.useState(0);
+
   let status = `Player ${player}`;
+  console.log(`Status Player ${status}`);
+
   const toggle = () => setMounted(!mounted);
+  const reRender = () => setRandom(Math.random());
+
   function renderSquare(i) {
     return <Square id={i} player={player}></Square>
   }
@@ -35,6 +46,7 @@ const Board = () => {
       </div>
       <div id="info">
         <button onClick={toggle}>Show/Hide Row</button>
+        <button onClick={reRender}>Re-render</button>
         <h1>{status}</h1>
       </div>
     </div>
